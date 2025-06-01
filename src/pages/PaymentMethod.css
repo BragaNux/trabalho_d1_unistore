@@ -1,0 +1,46 @@
+.payment-container {
+  padding: 2rem;
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+}
+
+.payment-options {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+}
+
+.payment-display {
+  margin: 30px 0;
+}
+
+.pix-area, .boleto-area, .cartao-area {
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.boleto {
+  background: #f5f5f5;
+  padding: 15px;
+  border-radius: 8px;
+  font-family: monospace;
+}
+
+.pagar-button {
+  background: #0066ff;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.sucesso-msg {
+  margin-top: 15px;
+  color: green;
+  font-weight: bold;
+}
