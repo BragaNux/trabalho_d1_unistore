@@ -1,102 +1,54 @@
-# 🏫 UniStore - E-commerce Acadêmico
+# React + TypeScript + Vite
 
-**UniStore** é um aplicativo de compras voltado para estudantes, com foco em simplicidade, visual limpo e integração com métodos de pagamento simulados. Desenvolvido com **React + TypeScript**, ele utiliza `localStorage` para simular o fluxo completo de um e-commerce: do carrinho ao rastreamento do pedido.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
----
+Currently, two official plugins are available:
 
-## 🚀 Funcionalidades
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-- 🛍️ Carrinho de compras com suporte a múltiplos itens
-- 👤 Login/Criação de conta local via `localStorage`
-- 📦 Histórico de pedidos (`Orders`) com detalhamento completo
-- 🧾 Rastreamento de pedido (`OrderTracking`) por etapas visuais
-- 💳 Pagamentos com Pix, Boleto e Cartão de Crédito
-- 📱 Interface responsiva e acadêmica, com tema limpo
+## Expanding the ESLint configuration
 
----
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-## 💸 Métodos de Pagamento
-
-### 1. Pix
-- Gera um QR Code visual simulando pagamento instantâneo
-- Após clicar em “Pagar com Pix”, o pedido é salvo e marcado como **Pago**
-
-### 2. Boleto
-- Exibe um boleto com código de barras fictício
-- Simula pagamento no clique e confirma o pedido
-
-### 3. Cartão de Crédito
-- Preenchimento com verificação automática da bandeira (Visa, Mastercard, etc.)
-- Máscara aplicada ao número do cartão
-- Pedido é criado **somente após** clicar em "Confirmar Pagamento"
-
----
-
-## 📦 Exemplo de Pedido Registrado
-
-```json
-{
-  "id": "abc123",
-  "items": ["Caneca Universitária", "Livro de Cálculo"],
-  "total": 89.90,
-  "metodo": "Cartão de Crédito",
-  "bandeira": "Visa",
-  "status": "Pago"
-}
+```js
+export default tseslint.config({
+  extends: [
+    // Remove ...tseslint.configs.recommended and replace with this
+    ...tseslint.configs.recommendedTypeChecked,
+    // Alternatively, use this for stricter rules
+    ...tseslint.configs.strictTypeChecked,
+    // Optionally, add this for stylistic rules
+    ...tseslint.configs.stylisticTypeChecked,
+  ],
+  languageOptions: {
+    // other options...
+    parserOptions: {
+      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      tsconfigRootDir: import.meta.dirname,
+    },
+  },
+})
 ```
 
----
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-## 🕝 Rastreamento de Pedido
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-Cada pedido possui uma etapa de entrega simulada:
-
-```markdown
-1. Pedido Recebido
-2. Separando Estoque
-3. Saiu para Entrega
-4. Entregue
+export default tseslint.config({
+  plugins: {
+    // Add the react-x and react-dom plugins
+    'react-x': reactX,
+    'react-dom': reactDom,
+  },
+  rules: {
+    // other rules...
+    // Enable its recommended typescript rules
+    ...reactX.configs['recommended-typescript'].rules,
+    ...reactDom.configs.recommended.rules,
+  },
+})
 ```
-
-Visualmente representado com barra de progresso e etapas completas/pending.
-
----
-
-## 🗂️ Estrutura de Telas
-
-- `Start.tsx` – Tela inicial de boas-vindas
-- `Login.tsx` – Tela de login
-- `CreateAccount.tsx` – Cadastro de conta
-- `Shop.tsx` – Catálogo de produtos
-- `ProductView.tsx` – Detalhe do produto
-- `Cart.tsx` – Carrinho de compras
-- `Payment.tsx` – Escolha de método de pagamento
-- `Pix.tsx`, `Boleto.tsx`, `CreditCard.tsx` – Telas de pagamento
-- `Orders.tsx` – Histórico de pedidos
-- `OrderTracking.tsx` – Rastreamento visual da entrega
-
----
-
-## 🧢 Tecnologias Utilizadas
-
-- React + Vite + TypeScript
-- React Router DOM
-- Context API para estado global (carrinho)
-- LocalStorage como simulação de backend
-- CSS Modularizado
-- Ícones e imagens: Flaticon, Unsplash, etc.
-
----
-
-## 📌 Observações
-
-- Este projeto é totalmente **frontend** com persistência em `localStorage`.
-- Ideal para fins educacionais e demonstração de fluxo e-commerce completo.
-
----
-
-## 👨‍💻 Desenvolvido por
-
-**Brayan**  
-[GitHub](https://github.com/BragaNux)  
-[LinkedIn](https://www.linkedin.com/in/bmartlns/)
