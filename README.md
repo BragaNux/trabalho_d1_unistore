@@ -55,3 +55,11 @@ O projeto foi desenvolvido com foco em:
    ```bash
    git clone https://github.com/seu-usuario/unistore.git
    cd unistore
+
+2. Instale as dependências:
+   ```bash
+   npm install
+
+3. Rode o servidor local:
+   ```bash
+   npm run dev
