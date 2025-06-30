@@ -1,65 +1,93 @@
-# 📦 UniStore – E-commerce Acadêmico
+# 🎨 UniStore Frontend - Interface do E-commerce Acadêmico
 
-Este projeto simula uma loja online acadêmica com funcionalidades completas de login, cadastro, carrinho, pagamento e rastreamento de pedidos.
+Este repositório contém **apenas o frontend** do projeto **UniStore**, uma loja virtual voltada para estudantes, desenvolvida com foco em simplicidade, responsividade e simulação completa de um fluxo de e-commerce.
 
-## 🗂 Estrutura de Pastas
+---
+
+## 🚀 Tecnologias Utilizadas
+
+* **React + Vite + TypeScript**
+* **React Router DOM**
+* **Context API** para gerenciamento global do carrinho
+* **CSS modular** com foco em layout limpo e responsivo
+* **Armazenamento** via `localStorage` e consumo de **API REST**
+
+---
+
+## 📂 Estrutura de Pastas
 
 ```
-unistore_frontend/
-│
-├── public/                # Imagens públicas (como logo e perfil)
-│
-├── src/
-│   ├── assets/            # Imagens dos produtos
-│   │   └── images/
-│   │       └── products/  # Fotos dos produtos
-│   │
-│   ├── context/
-│   │   └── CartContext.tsx      # Lógica do carrinho com Context API
-│   │
-│   ├── pages/             # Telas principais do app
-│   │   ├── Start.tsx              # Tela inicial
-│   │   ├── Login.tsx              # Tela de login
-│   │   ├── CreateAccount.tsx      # Criação de conta
-│   │   ├── SavedAccounts.tsx      # Seleção de contas salvas
-│   │   ├── Shop.tsx               # Loja de produtos
-│   │   ├── ProductView.tsx        # Detalhes do produto
-│   │   ├── Cart.tsx               # Carrinho
-│   │   ├── Payment.tsx            # Tela de escolha de pagamento
-│   │   ├── Pix.tsx                # Pagamento via Pix (QR Code)
-│   │   ├── Boleto.tsx             # Pagamento via boleto
-│   │   ├── CreditCard.tsx         # Pagamento via cartão
-│   │   ├── Orders.tsx             # Lista de pedidos
-│   │   ├── OrderTracking.tsx      # Rastreamento do pedido
-│   │   ├── Profile.tsx            # Perfil do usuário
-│   │   └── NotFound.tsx           # Página 404
-│   │
-│   └── routes/
-│       └── AppRoutes.tsx          # Definição das rotas do app
-│
-├── App.tsx                    # Componente principal
-├── main.tsx                   # Ponto de entrada da aplicação
-├── index.html                 # HTML principal
-├── package.json               # Dependências e scripts
-└── tsconfig.json               # Configurações do TypeScript
+/src
+├── assets/               # Imagens e logos
+├── components/           # Componentes reutilizáveis (Navbar, Card, etc.)
+├── context/              # Context API para carrinho e usuário
+├── pages/                # Telas da aplicação
+│   ├── Start.tsx         # Tela inicial
+│   ├── Login.tsx         # Login de usuário
+│   ├── CreateAccount.tsx # Criação de conta
+│   ├── Shop.tsx          # Catálogo de produtos
+│   ├── ProductView.tsx   # Detalhe do produto
+│   ├── Cart.tsx          # Carrinho
+│   ├── Payment/          # Fluxo de pagamento (Pix, Boleto, Cartão)
+│   ├── Orders.tsx        # Histórico de pedidos
+│   └── OrderTracking.tsx # Rastreamento do pedido
+├── AppRoutes.tsx         # Definição de rotas
+├── main.tsx              # Entrada da aplicação
+└── index.css             # Estilo global
 ```
 
-## 🚀 Como Rodar
+---
+
+## 🧠 Funcionalidades
+
+* Cadastro/Login de usuário com persistência local
+* Carrinho de compras vinculado ao usuário logado
+* Pagamento simulado com 3 métodos:
+
+  * **Pix**: simula QR Code
+  * **Boleto**: gera boleto fictício
+  * **Cartão de Crédito**: com identificação de bandeira
+* Rastreamento visual de pedidos
+* Tela de pedidos com filtro por usuário logado
+* Integração completa com backend RESTful
+
+---
+
+## 🔐 Integração com Backend
+
+* URL base: `http://localhost:3333`
+* APIs consumidas:
+
+  * `POST /api/users/register` - Cadastro
+  * `POST /api/users/login` - Login
+  * `GET /api/products` - Lista de produtos
+  * `POST /api/orders/checkout` - Finaliza pedido
+  * `GET /api/orders/:userId` - Lista pedidos do usuário
+  * `GET /api/orders/details/:orderId` - Detalhes de um pedido
+  * `GET /api/tracking/:orderId` - Status atual do pedido
+
+---
+
+## 📦 Instalação e Execução
 
 ```bash
+# Clone o repositório
+cd unistore-frontend
 npm install
 npm run dev
 ```
 
-Acesse no navegador: `http://localhost:0000`
-
-## 👨‍💻 Tecnologias
-
-- React + TypeScript
-- Vite
-- Context API
-- localStorage
-- CSS modular
-- React Router
+O sistema estará acessível em `http://localhost:5173`
 
 ---
+
+## 📱 Responsividade
+
+O layout é totalmente adaptado para smartphones e desktops, com foco em usabilidade limpa e rápida.
+
+---
+
+## 👤 Desenvolvido por
+
+**Brayan Martins**
+[GitHub](https://github.com/BragaNux) | [LinkedIn](https://www.linkedin.com/in/bmartlns/)
