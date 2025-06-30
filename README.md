@@ -1,102 +1,162 @@
-# 🏫 UniStore - E-commerce Acadêmico
+# 🛠 UniStore Backend - API de E-commerce Acadêmico
 
-**UniStore** é um aplicativo de compras voltado para estudantes, com foco em simplicidade, visual limpo e integração com métodos de pagamento simulados. Desenvolvido com **React + TypeScript**, ele utiliza `localStorage` para simular o fluxo completo de um e-commerce: do carrinho ao rastreamento do pedido.
-
----
-
-## 🚀 Funcionalidades
-
-- 🛍️ Carrinho de compras com suporte a múltiplos itens
-- 👤 Login/Criação de conta local via `localStorage`
-- 📦 Histórico de pedidos (`Orders`) com detalhamento completo
-- 🧾 Rastreamento de pedido (`OrderTracking`) por etapas visuais
-- 💳 Pagamentos com Pix, Boleto e Cartão de Crédito
-- 📱 Interface responsiva e acadêmica, com tema limpo
+Este é o backend da **UniStore**, uma plataforma de e-commerce voltada para estudantes. Desenvolvido com **Node.js + Express + PostgreSQL**, gerencia contas de usuários, produtos, carrinho de compras, pedidos, pagamentos e rastreamento.
 
 ---
 
-## 💸 Métodos de Pagamento
+## ⚙️ Tecnologias Utilizadas
 
-### 1. Pix
-- Gera um QR Code visual simulando pagamento instantâneo
-- Após clicar em “Pagar com Pix”, o pedido é salvo e marcado como **Pago**
-
-### 2. Boleto
-- Exibe um boleto com código de barras fictício
-- Simula pagamento no clique e confirma o pedido
-
-### 3. Cartão de Crédito
-- Preenchimento com verificação automática da bandeira (Visa, Mastercard, etc.)
-- Máscara aplicada ao número do cartão
-- Pedido é criado **somente após** clicar em "Confirmar Pagamento"
+* **Node.js** com **Express**
+* **TypeScript**
+* **PostgreSQL** (sem uso de ORM como Prisma ou afins)
+* **pg** para conexão com o banco de dados
+* **dotenv** para configurações de ambiente
 
 ---
 
-## 📦 Exemplo de Pedido Registrado
+## 📁 Estrutura de Pastas
+
+```
+unistore-backend/
+├── src/
+│   ├── config/          # Conexão com o banco (db.ts)
+│   ├── controllers/     # Lógica das rotas (users, orders, payments, etc)
+│   ├── routes/          # Rotas da API
+│   ├── services/        # Lógicas reutilizáveis
+│   ├── middlewares/     # Validações, autenticação, etc
+│   ├── app.ts           # App Express principal
+│   └── server.ts        # Inicialização do servidor
+├── .env
+├── package.json
+├── tsconfig.json
+```
+
+---
+
+## 🔌 Conexão com o Banco
+
+No arquivo `.env`:
+
+```
+DATABASE_URL=postgresql://usuario:senha@localhost:5432/unistore_db
+PORT=3333
+```
+
+Arquivo `db.ts`:
+
+```ts
+import { Pool } from 'pg';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+export const db = new Pool({
+  connectionString: process.env.DATABASE_URL,
+});
+```
+
+---
+
+## 📦 Endpoints da API
+
+### ✉️ Usuários
+
+* `POST /api/users/register` - Cria um novo usuário
+* `POST /api/users/login` - Autentica usuário (JWT opcional)
+
+### 🛒 Carrinho
+
+* `POST /api/cart/add` - Adiciona item ao carrinho
+* `GET /api/cart/:userId` - Busca itens do carrinho
+* `DELETE /api/cart/:cartItemId` - Remove item do carrinho
+
+### 📦 Pedidos
+
+* `POST /api/orders/checkout` - Finaliza compra
+* `GET /api/orders/:userId` - Lista pedidos do usuário
+* `GET /api/orders/details/:orderId` - Itens de um pedido
+
+### 💳 Pagamentos
+
+* Criado automaticamente com o pedido
+* Campos: `order_id`, `method`, `status`, `transaction_code`
+
+### 🛍 Rastreamento
+
+* `GET /api/tracking/:orderId` - Busca status atual
+* `POST /api/tracking` - Cria novo rastreio
+* `PUT /api/tracking/:orderId` - Atualiza status (ex: para "shipped")
+
+> Status válidos para rastreamento: `processing`, `shipped`, `in_transit`, `delivered`
+
+---
+
+## 📊 Exemplo de Checkout (POST /api/orders/checkout)
 
 ```json
 {
-  "id": "abc123",
-  "items": ["Caneca Universitária", "Livro de Cálculo"],
-  "total": 89.90,
-  "metodo": "Cartão de Crédito",
-  "bandeira": "Visa",
-  "status": "Pago"
+  "userId": "123e4567-e89b-12d3-a456-426614174000",
+  "paymentMethod": "pix"
+}
+```
+
+Resposta:
+
+```json
+{
+  "message": "Pedido realizado com sucesso",
+  "orderId": "abc123",
+  "paymentStatus": "confirmed",
+  "transactionCode": "PIX-abc123-1720024292921"
 }
 ```
 
 ---
 
-## 🕝 Rastreamento de Pedido
+## ⚡ Testes com Postman
 
-Cada pedido possui uma etapa de entrega simulada:
+* Criar conta
+* Logar usuário
+* Adicionar itens no carrinho (POST /api/cart/add)
+* Ver carrinho
+* Finalizar pedido
+* Consultar pedido por userId
+* Atualizar status do rastreamento (PUT /api/tracking/\:orderId)
 
-```markdown
-1. Pedido Recebido
-2. Separando Estoque
-3. Saiu para Entrega
-4. Entregue
+---
+
+## 🧪 Scripts
+
+```bash
+npm install        # Instala dependências
+npm run dev        # Inicia servidor com ts-node-dev
 ```
 
-Visualmente representado com barra de progresso e etapas completas/pending.
+---
+
+## 📄 Modelo de Tabelas (Resumo)
+
+* `users(id, name, email, password)`
+* `products(id, name, description, price, image)`
+* `carts(id, user_id)`
+* `cart_items(id, cart_id, product_id, quantity, price_at_time)`
+* `orders(id, user_id, total_amount, status, payment_method)`
+* `order_items(id, order_id, product_id, quantity, price_at_time)`
+* `payments(id, order_id, method, status, transaction_code)`
+* `tracking(id, order_id, status, updated_at)`
 
 ---
 
-## 🗂️ Estrutura de Telas
+## 🚀 Roadmap Futuro
 
-- `Start.tsx` – Tela inicial de boas-vindas
-- `Login.tsx` – Tela de login
-- `CreateAccount.tsx` – Cadastro de conta
-- `Shop.tsx` – Catálogo de produtos
-- `ProductView.tsx` – Detalhe do produto
-- `Cart.tsx` – Carrinho de compras
-- `Payment.tsx` – Escolha de método de pagamento
-- `Pix.tsx`, `Boleto.tsx`, `CreditCard.tsx` – Telas de pagamento
-- `Orders.tsx` – Histórico de pedidos
-- `OrderTracking.tsx` – Rastreamento visual da entrega
-
----
-
-## 🧢 Tecnologias Utilizadas
-
-- React + Vite + TypeScript
-- React Router DOM
-- Context API para estado global (carrinho)
-- LocalStorage como simulação de backend
-- CSS Modularizado
-- Ícones e imagens: Flaticon, Unsplash, etc.
-
----
-
-## 📌 Observações
-
-- Este projeto é totalmente **frontend** com persistência em `localStorage`.
-- Ideal para fins educacionais e demonstração de fluxo e-commerce completo.
+* [ ] Autenticação JWT completa
+* [ ] Admin para gestão de produtos/pedidos
+* [ ] Upload de imagens reais (com multer)
+* [ ] Integração real com gateway de pagamento
 
 ---
 
 ## 👨‍💻 Desenvolvido por
 
-**Brayan**  
-[GitHub](https://github.com/BragaNux)  
-[LinkedIn](https://www.linkedin.com/in/bmartlns/)
+**Brayan Martins**
+[GitHub](https://github.com/BragaNux) | [LinkedIn](https://linkedin.com/in/bmartlns)
