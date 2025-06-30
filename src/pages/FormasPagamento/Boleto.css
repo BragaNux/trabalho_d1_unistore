@@ -1,0 +1,78 @@
+.boleto-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 2rem;
+  text-align: center;
+  background: #ffffff0d;
+  border-radius: 16px;
+  color: #fff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.boleto-subtitle {
+  color: #ccc;
+  margin-bottom: 1rem;
+}
+
+.boleto-box {
+  margin-top: 1rem;
+  padding: 1.5rem;
+  border: 1px dashed #888;
+  background-color: #1e1e1e;
+  border-radius: 12px;
+}
+
+.boleto-info {
+  margin-bottom: 1.5rem;
+  text-align: left;
+  color: #ddd;
+}
+
+.boleto-barcode {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #333;
+  padding: 0.75rem;
+  border-radius: 8px;
+  font-family: monospace;
+  font-size: 1rem;
+  color: #0f0;
+}
+
+.boleto-barcode button {
+  background: #00b894;
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.barcode-visual {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+  flex-wrap: wrap;
+  background: #000;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.bar {
+  background: #eee;
+  height: 40px;
+  width: 2px;
+  margin: 0 1px;
+}
+
+.boleto-voltar {
+  margin-top: 1.5rem;
+  background: #0984e3;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}

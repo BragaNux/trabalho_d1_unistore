@@ -1,0 +1,112 @@
+.orders-container {
+  min-height: 100vh;
+  padding: 24px;
+  background: linear-gradient(to bottom right, #f5f8ff, #ffffff);
+  font-family: 'Inter', sans-serif;
+}
+
+.orders-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1e1e1e;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.orders-empty {
+  text-align: center;
+  color: #777;
+  font-size: 1.1rem;
+  margin-top: 60px;
+}
+
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.order-card {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 500px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.order-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.order-id {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1e1e1e;
+  margin-bottom: 10px;
+}
+
+.order-items {
+  font-size: 0.95rem;
+  color: #444;
+  margin-bottom: 6px;
+}
+
+.order-total {
+  font-size: 1rem;
+  color: #007aff;
+  margin-bottom: 12px;
+}
+
+.track-btn {
+  background-color: #007aff;
+  color: white;
+  padding: 12px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.track-btn:hover {
+  background-color: #005fd1;
+}
+
+.order-status {
+  margin: 8px 0;
+  font-weight: 500;
+}
+
+.status {
+  padding: 2px 8px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.status.pendente {
+  color: #ff9f00;
+}
+
+.status.pendente {
+  color: #ff9f00;
+}
+
+.status.em-transporte {
+  color: #007aff;
+}
+
+.status.entregue {
+  color: #00b894;
+}
+
+
+.status.entregue {
+  color: #00b894;
+}
+

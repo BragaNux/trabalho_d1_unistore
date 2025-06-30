@@ -1,0 +1,172 @@
+.profile-container {
+  font-family: 'Inter', sans-serif;
+  padding: 24px;
+  background-color: #f5f8ff;
+  min-height: 100vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1e1e1e;
+  margin-bottom: 6px;
+}
+
+.profile-subtitle {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 16px;
+}
+
+.edit-toggle {
+  background: none;
+  border: none;
+  color: #007aff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  cursor: pointer;
+}
+
+.profile-photo-wrapper {
+  margin-bottom: 20px;
+}
+
+.photo-editable {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 2px dashed #007aff;
+  background-color: #f1f1f1;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  cursor: default;
+}
+
+.photo-editable.active {
+  cursor: pointer;
+}
+
+.photo-editable img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.profile-content {
+  width: 100%;
+  max-width: 640px;
+}
+
+.profile-card {
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1e1e1e;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+  text-align: left;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+  gap: 12px;
+}
+
+.info-label {
+  font-weight: 500;
+  color: #666;
+  font-size: 0.95rem;
+  flex: 1;
+  text-align: left;
+}
+
+.input-edit {
+  flex: 2;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: #f8faff;
+  text-align: right;
+}
+
+.input-edit[readonly] {
+  background-color: #f1f1f1;
+  border: none;
+  color: #333;
+}
+
+.save-profile-button {
+  width: 100%;
+  padding: 14px;
+  background-color: #007aff;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  border-radius: 12px;
+  margin-top: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.save-profile-button:hover {
+  background-color: #005fd1;
+}
+
+.snackbar {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  padding: 14px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  animation: fadeInOut 2.5s ease;
+  z-index: 999;
+}
+
+.snackbar.success {
+  background-color: #22c55e;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+}

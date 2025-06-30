@@ -1,102 +1,65 @@
-# 🏫 UniStore - E-commerce Acadêmico
+# 📦 UniStore – E-commerce Acadêmico
 
-**UniStore** é um aplicativo de compras voltado para estudantes, com foco em simplicidade, visual limpo e integração com métodos de pagamento simulados. Desenvolvido com **React + TypeScript**, ele utiliza `localStorage` para simular o fluxo completo de um e-commerce: do carrinho ao rastreamento do pedido.
+Este projeto simula uma loja online acadêmica com funcionalidades completas de login, cadastro, carrinho, pagamento e rastreamento de pedidos.
 
----
+## 🗂 Estrutura de Pastas
 
-## 🚀 Funcionalidades
-
-- 🛍️ Carrinho de compras com suporte a múltiplos itens
-- 👤 Login/Criação de conta local via `localStorage`
-- 📦 Histórico de pedidos (`Orders`) com detalhamento completo
-- 🧾 Rastreamento de pedido (`OrderTracking`) por etapas visuais
-- 💳 Pagamentos com Pix, Boleto e Cartão de Crédito
-- 📱 Interface responsiva e acadêmica, com tema limpo
-
----
-
-## 💸 Métodos de Pagamento
-
-### 1. Pix
-- Gera um QR Code visual simulando pagamento instantâneo
-- Após clicar em “Pagar com Pix”, o pedido é salvo e marcado como **Pago**
-
-### 2. Boleto
-- Exibe um boleto com código de barras fictício
-- Simula pagamento no clique e confirma o pedido
-
-### 3. Cartão de Crédito
-- Preenchimento com verificação automática da bandeira (Visa, Mastercard, etc.)
-- Máscara aplicada ao número do cartão
-- Pedido é criado **somente após** clicar em "Confirmar Pagamento"
-
----
-
-## 📦 Exemplo de Pedido Registrado
-
-```json
-{
-  "id": "abc123",
-  "items": ["Caneca Universitária", "Livro de Cálculo"],
-  "total": 89.90,
-  "metodo": "Cartão de Crédito",
-  "bandeira": "Visa",
-  "status": "Pago"
-}
+```
+unistore_frontend/
+│
+├── public/                # Imagens públicas (como logo e perfil)
+│
+├── src/
+│   ├── assets/            # Imagens dos produtos
+│   │   └── images/
+│   │       └── products/  # Fotos dos produtos
+│   │
+│   ├── context/
+│   │   └── CartContext.tsx      # Lógica do carrinho com Context API
+│   │
+│   ├── pages/             # Telas principais do app
+│   │   ├── Start.tsx              # Tela inicial
+│   │   ├── Login.tsx              # Tela de login
+│   │   ├── CreateAccount.tsx      # Criação de conta
+│   │   ├── SavedAccounts.tsx      # Seleção de contas salvas
+│   │   ├── Shop.tsx               # Loja de produtos
+│   │   ├── ProductView.tsx        # Detalhes do produto
+│   │   ├── Cart.tsx               # Carrinho
+│   │   ├── Payment.tsx            # Tela de escolha de pagamento
+│   │   ├── Pix.tsx                # Pagamento via Pix (QR Code)
+│   │   ├── Boleto.tsx             # Pagamento via boleto
+│   │   ├── CreditCard.tsx         # Pagamento via cartão
+│   │   ├── Orders.tsx             # Lista de pedidos
+│   │   ├── OrderTracking.tsx      # Rastreamento do pedido
+│   │   ├── Profile.tsx            # Perfil do usuário
+│   │   └── NotFound.tsx           # Página 404
+│   │
+│   └── routes/
+│       └── AppRoutes.tsx          # Definição das rotas do app
+│
+├── App.tsx                    # Componente principal
+├── main.tsx                   # Ponto de entrada da aplicação
+├── index.html                 # HTML principal
+├── package.json               # Dependências e scripts
+└── tsconfig.json               # Configurações do TypeScript
 ```
 
----
+## 🚀 Como Rodar
 
-## 🕝 Rastreamento de Pedido
-
-Cada pedido possui uma etapa de entrega simulada:
-
-```markdown
-1. Pedido Recebido
-2. Separando Estoque
-3. Saiu para Entrega
-4. Entregue
+```bash
+npm install
+npm run dev
 ```
 
-Visualmente representado com barra de progresso e etapas completas/pending.
+Acesse no navegador: `http://localhost:0000`
+
+## 👨‍💻 Tecnologias
+
+- React + TypeScript
+- Vite
+- Context API
+- localStorage
+- CSS modular
+- React Router
 
 ---
-
-## 🗂️ Estrutura de Telas
-
-- `Start.tsx` – Tela inicial de boas-vindas
-- `Login.tsx` – Tela de login
-- `CreateAccount.tsx` – Cadastro de conta
-- `Shop.tsx` – Catálogo de produtos
-- `ProductView.tsx` – Detalhe do produto
-- `Cart.tsx` – Carrinho de compras
-- `Payment.tsx` – Escolha de método de pagamento
-- `Pix.tsx`, `Boleto.tsx`, `CreditCard.tsx` – Telas de pagamento
-- `Orders.tsx` – Histórico de pedidos
-- `OrderTracking.tsx` – Rastreamento visual da entrega
-
----
-
-## 🧢 Tecnologias Utilizadas
-
-- React + Vite + TypeScript
-- React Router DOM
-- Context API para estado global (carrinho)
-- LocalStorage como simulação de backend
-- CSS Modularizado
-- Ícones e imagens: Flaticon, Unsplash, etc.
-
----
-
-## 📌 Observações
-
-- Este projeto é totalmente **frontend** com persistência em `localStorage`.
-- Ideal para fins educacionais e demonstração de fluxo e-commerce completo.
-
----
-
-## 👨‍💻 Desenvolvido por
-
-**Brayan**  
-[GitHub](https://github.com/BragaNux)  
-[LinkedIn](https://www.linkedin.com/in/bmartlns/)
